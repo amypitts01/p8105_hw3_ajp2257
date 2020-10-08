@@ -146,6 +146,8 @@ activity_long %>%
   knitr::kable()
 ```
 
+Here just looking at the numbers it is hard to see very distinct patterns. A couple of things I notice is that on the last two Saturday the person barely has any movement which is a big difference compared to other days. Also on Wednesdays through all the weeks he looks to have around the same amount of activity comparatively.  
+
 
 
 - Accelerometer data allows the inspection activity over the course of the day. Make a single-panel plot that shows the 24-hour activity time courses for each day and use color to indicate day of the week. Describe in words any patterns or conclusions you can make based on this graph.
@@ -154,7 +156,8 @@ activity_long %>%
 activity_long %>%
   ggplot(aes(x = as.numeric(activity_number), y = as.numeric(activity_minute), color=day)) +
   geom_smooth(se = FALSE) +
-  labs(
+  scale_y_continuous(limit=c(0,450)) +
+  labs( 
     title = "24-hour activity time by day of the Week",
     x = "1440 Minute in the day (0 is Midnight)",
     y = "Activity Count"
@@ -164,10 +167,7 @@ activity_long %>%
 ```
 
 
-Looking at the graph we see that at the very beginning and the very end there is less activity which makes sense because that is closest to midnight so the person is probably asleep. Also, most activity is in the middle of the graph which makes sense because that is the beginning of the day. The biggest spike is on Friday towards the end of the day so maybe on Fridays, he has some strenuous nighttime activity. 
-
-
-
+Looking at the graph we see that at the very beginning and the very end there is less activity which makes sense because that is closest to midnight so the person is probably asleep. Also, most activity is in the middle of the graph which makes sense because that is the beginning of the day. The lest activity seems to be on Saturdays which makes sense with the table from above because he did have a couple weeks of very low activity on Saturdays. 
 
 
 
@@ -306,6 +306,8 @@ two = ny_noaa_fixed %>%
   
 (one / two)
 ```
+
+It is really interesting that the median is the same for snow fall all the years. However, the mean is different for all the year which can help show the years that had more extreme snowfalls. 
 
 
 

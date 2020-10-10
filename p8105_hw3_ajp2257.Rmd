@@ -202,7 +202,7 @@ This table shows us that there is a lot of missing values in the dataset. The mo
 
 - Do some data cleaning. Create separate variables for year, month, and day. Ensure observations for temperature, precipitation, and snowfall are given in reasonable units. For snowfall, what are the most commonly observed values? Why?
 
-We are first cleaning up the data. This involves putting the date variable into a year, month, and day variables. We also want to force the max and min temperature to be numeric values instead of characters since that makes more sense with what temperature is. 
+We are first cleaning up the data. This involves putting the date variable into a year, month, and day variables. We also want to force the max and min temperature to be numeric values instead of characters since that makes more sense with what temperature is. Also the temp variables didn't make a lot of sense because it is in tenths of degrees C so we need to divide them by ten to get them in a form we are used to seeing 
 ```{r}
 ny_noaa_fixed = ny_noaa %>%
   separate(date, sep="-", into = c("year", "month", "day")) %>%
@@ -211,7 +211,9 @@ ny_noaa_fixed = ny_noaa %>%
    month = as.integer(month),
    day = as.integer(day),
    tmax = as.numeric(tmax),
-   tmin = as.numeric(tmin)
+   tmin = as.numeric(tmin),
+   tmax = tmax / 10,
+   tmin = tmin / 10
   )
  
 ```
